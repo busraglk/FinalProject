@@ -1,10 +1,10 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     //generic constraint - generic kısıt
     //class : referans tip olabilir.
@@ -18,5 +18,12 @@ namespace DataAccess.Abstract
         void Update(T entity);
         void Delete(T entity);
 
+    }
+}
+
+namespace Core
+{
+    public interface IDto
+    {
     }
 }

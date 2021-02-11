@@ -9,25 +9,57 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //ProductManager productManager = new ProductManager(new EfProductDal());
+            //foreach (var product in productManager.GetAll())
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //}
+            //Console.WriteLine("***************");
+
+            //foreach (var product in productManager.GetAllByCategoryId(2))
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //}
+
+            //Console.WriteLine("***************");
+
+            //foreach (var product in productManager.GetByUnitPrice(40, 100))
+            //{
+            //    Console.WriteLine(product.ProductName);
+            //}
+
+            Console.WriteLine("***************");
+            
+            //CategoryTest();
+
+            Console.WriteLine("***10.Gün C# Kurumsal Yazılım Mimariler***");
+            
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetAll())
+
+            var result = productManager.GetProductDetails();
+            if (result.Success==true)
             {
-                Console.WriteLine(product.ProductName);
+                foreach (var product in result.Data) 
+                {
+                    Console.WriteLine(product.ProductName + " / " + product.CategoryName);
+                }
             }
-            Console.WriteLine("***************");
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
            
-            foreach (var product in productManager.GetAllByCategoryId(2))
-            {
-                Console.WriteLine(product.ProductName);
-            }
 
-            Console.WriteLine("***************");
+                Console.ReadLine();
+        }
 
-            foreach (var product in productManager.GetByUnitPrice(40,100))
+        private static void CategoryTest()
+        {
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            foreach (var category in categoryManager.GetAll())
             {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(category.CategoryName);
             }
-            Console.ReadLine();
         }
     }
 }
