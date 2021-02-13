@@ -20,7 +20,6 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
-
         public IResult Add(Product product)
         {
             //business codes
@@ -39,7 +38,7 @@ namespace Business.Concrete
             // bir iş sınıf başka sınıfları newlemez. injektion yapılır. 
             //InMemoryProductDal ınMemoryProductDal = new InMemoryProductDal();  xxxx
 
-            if (DateTime.Now.Hour == 17)
+            if (DateTime.Now.Hour == 1)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
