@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
@@ -29,17 +30,18 @@ namespace ConsoleUI
             //}
 
             Console.WriteLine("***************");
-            
+
+
             //CategoryTest();
 
             Console.WriteLine("***10.Gün C# Kurumsal Yazılım Mimariler***");
-            
-            ProductManager productManager = new ProductManager(new EfProductDal());
+
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
             var result = productManager.GetProductDetails();
-            if (result.Success==true)
+            if (result.Success == true)
             {
-                foreach (var product in result.Data) 
+                foreach (var product in result.Data)
                 {
                     Console.WriteLine(product.ProductName + " / " + product.CategoryName);
                 }
@@ -48,15 +50,15 @@ namespace ConsoleUI
             {
                 Console.WriteLine(result.Message);
             }
-           
 
-                Console.ReadLine();
+
+            Console.ReadLine();
         }
 
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var category in categoryManager.GetAll())
+            foreach (var category in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(category.CategoryName);
             }
