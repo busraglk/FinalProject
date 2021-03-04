@@ -1,4 +1,4 @@
-﻿using Core.Utilies.Interceptors;
+﻿ using Core.Utilies.Interceptors;
 using Core.Utilies.IoC;
 using Microsoft.AspNetCore.Http;
 using System;
