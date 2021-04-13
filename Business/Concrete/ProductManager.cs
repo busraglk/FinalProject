@@ -39,8 +39,11 @@ namespace Business.Concrete
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
+
             //business codes    
-            IResult result =BusinessRules.Run(CheckIfProductNameExists(product.ProductName), CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfCategoryLimitExceded());
+            IResult result =BusinessRules.Run(CheckIfProductNameExists(product.ProductName), 
+                CheckIfProductCountOfCategoryCorrect(product.CategoryId), 
+                CheckIfCategoryLimitExceded());
 
             if (result != null) //kurala uymayan bir durum oluşmuş ise 
             {
@@ -118,7 +121,7 @@ namespace Business.Concrete
 
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
-            // _productDal.GetAll(p => p.CategoryId == categoryId).Count burası   aslında Select count(*) from ptofucts where categoryId=1 arka planda bunu çalıştırır.
+            // _productDal.GetAll(p => p.CategoryId == categoryId).Count burası aslında Select count(*) from products where categoryId=1 arka planda bunu çalıştırır.
             
             //Bir kategoride en fazla 10 ürün olabilir.
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
